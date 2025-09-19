@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Hearts - Знакомства безбезбез границ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container py-4">
+        <!-- Логотип с анимацией -->
+        <div class="logo-container">
+            <div class="logo">
+                <svg viewBox="0 0 100 100">
+                    <animate dur="10s"
+                        attributeName = "opacity"
+                        from ="0"
+                        to="1"
+                        />
+                    <path d="M 20,50 
+                             C 40,10 60,110 80,40
+                             C 60,10 40,110 20,50 
+                             " 
+                          stroke="#ff4b7d" 
+                          stroke-width="8" 
+                          fill="none" 
+                          stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Заголовок -->
+        <div class="header">
+            <h1 class="display-4 mb-3">Infinity Hearts <i class="fas fa-infinity"></i></h1>
+            <p class="lead"> свою вторую половинку среди тысяч анкет</p>
+        </div>
+        
+        <!-- Фильтры -->
+        <div class="filters-card">
+            <div class="filters-header">
+                <h2><i class="fas fa-filter me-2"></i>Фильтр анкет</h2>
+                <button id="resetFilters" class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-redo me-1"></i>Сбросить
+                </button>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="filter-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" class="form-control" id="filterName" placeholder="Поиск по имени">
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="filter-group">
+                        <label class="form-label">Возраст</label>
+                        <div class="d-flex align-items-center">
+                            <input type="number" class="form-control me-2" id="filterAgeMin" placeholder="От" min="18" max="99">
+                            <span class="mx-1">-</span>
+                            <input type="number" class="form-control ms-2" id="filterAgeMax" placeholder="До" min="18" max="99">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="filter-group">
+                        <label class="form-label">Город</label>
+                        <select class="form-select" id="filterCity">
+                            <option value="">Все города</option>
+                            <option>Моква</option>
+                            <option>Санкт-Петербург</option>
+                            <option>Новосибирск</option>
+                            <option>Екатеринбург</option>
+                            <option>Казань</option>
+                            <option>Нижний Новгород</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="filter-group">
+                        <label class="form-label">Интересы</label>
+                        <select class="form-select" id="filterInterests">
+                            <option value="">Все интересы</option>
+                            <option>Путешествия</option>
+                            <option>Кино</option>
+                            <option>Музыка</option>
+                            <option>Спорт</option>
+                            <option>Книги</option>
+                            <option>Искусство</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="filter-group">
+                        <label class="form-label">Пол</label>
+                        <select class="form-select" id="filterGender">
+                            <option value="">Любой</option>
+                            <option>Мужской</option>
+                            <option>Женский</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="filter-group">
+                        <label class="form-label">Статус</label>
+                        <select class="form-select" id="filterStatus">
+                            <option value="">Все</option>
+                            <option>Онлайн</option>
+                            <option>Недавно онлайн</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Результаты поиска -->
+        <div class="row" id="profilesContainer">
+            <!-- Профили будут загружены через JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Окно сообщений -->
+    <div class="message-modal" id="messageModal">
+        <div class="message-container">
+            <div class="message-header">
+                <button class="btn btn-sm btn-outline-light me-3" id="closeMessage">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="d-flex align-items-center">
+                    <div class="avatar me-3" style="width: 40px; height: 40px; border-radius: 50%; background-color: #ff4b7d;"></div>
+                    <div>
+                        <h5 class="mb-0" id="messageUserName">Анна Петрова</h5>
+                        <small id="messageUserStatus">Онлайн</small>
+                    </div>
+                </div>
+            </div>
+            <div class="message-body" id="messageBody">
+                <!-- Сообщения будут загружены здесь -->
+            </div>
+            <div class="message-input-area">
+                <button class="btn-emoji" id="emojiToggle">
+                    <i class="far fa-smile"></i>
+                </button>
+                <div class="emoji-picker" id="emojiPicker">
+                    <!-- Эмодзи будут загружены через JavaScript -->
+                </div>
+                <input type="text" class="form-control" id="messageInput" placeholder="Напишите сообщение...">
+                <button class="btn btn-primary" id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
